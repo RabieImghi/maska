@@ -1,11 +1,18 @@
 package org.example.maskacrud.entity;
 
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "members")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
 public class Member {
 
     @Id
@@ -30,59 +37,12 @@ public class Member {
     @Column(name = "license_expiration_date")
     private LocalDate licenseExpirationDate;
 
-    public String getMembershipNumber() {
-        return membershipNumber;
-    }
-
-    public void setMembershipNumber(String membershipNumber) {
-        this.membershipNumber = membershipNumber;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getIdentificationDocument() {
-        return identificationDocument;
-    }
-
-    public void setIdentificationDocument(String identificationDocument) {
-        this.identificationDocument = identificationDocument;
-    }
-
-    public String getNationality() {
-        return nationality;
-    }
-
-    public void setNationality(String nationality) {
-        this.nationality = nationality;
-    }
-
-    public LocalDate getMembershipDate() {
-        return membershipDate;
-    }
-
-    public void setMembershipDate(LocalDate membershipDate) {
-        this.membershipDate = membershipDate;
-    }
-
-    public LocalDate getLicenseExpirationDate() {
-        return licenseExpirationDate;
-    }
-
-    public void setLicenseExpirationDate(LocalDate licenseExpirationDate) {
-        this.licenseExpirationDate = licenseExpirationDate;
+    @Override
+    public String toString() {
+        return "\n----------------------------------------\nMember{" +
+                "membershipNumber='" + membershipNumber + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 }

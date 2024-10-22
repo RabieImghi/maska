@@ -7,6 +7,7 @@
     <groupId>org.example</groupId>
     <artifactId>maskaCrud</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>maskaCrud</name>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -47,6 +48,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
             <version>2.6.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.34</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

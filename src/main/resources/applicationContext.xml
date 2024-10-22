@@ -14,7 +14,6 @@
            http://www.springframework.org/schema/data/jpa
            http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
-    <!-- DataSource Bean -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
         <property name="url" value="jdbc:postgresql://localhost:5432/jeeCrud"/>
@@ -22,7 +21,6 @@
         <property name="password" value=""/>
     </bean>
 
-    <!-- JPA EntityManagerFactory Bean -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan" value="org.example.maskacrud.entity"/>
@@ -38,14 +36,33 @@
         </property>
     </bean>
 
-    <!-- Transaction Manager -->
+
+    <bean id="memberSingleton" class="org.example.maskacrud.entity.Member" scope="singleton">
+        <constructor-arg value="M001"/>
+        <constructor-arg value="John"/>
+        <constructor-arg value="Doe"/>
+        <constructor-arg value="ID123456"/>
+        <constructor-arg value="Moroccan"/>
+        <constructor-arg value="#{T(java.time.LocalDate).now()}"/>
+        <constructor-arg value="#{T(java.time.LocalDate).now().plusYears(1)}"/>
+    </bean>
+    <bean id="memberPrototype" class="org.example.maskacrud.entity.Member" scope="prototype">
+        <constructor-arg value="M002"/>
+        <constructor-arg value="Jane"/>
+        <constructor-arg value="Smith"/>
+        <constructor-arg value="ID654321"/>
+        <constructor-arg value="French"/>
+        <constructor-arg value="#{T(java.time.LocalDate).now()}"/>
+        <constructor-arg value="#{T(java.time.LocalDate).now().plusYears(2)}"/>
+    </bean>
+
+
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
-    <!-- Enable Annotation-Based Transaction Management -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
-    <!-- Component Scanning -->
+
     <context:component-scan base-package="org.example.maskacrud.service"/>
     <context:component-scan base-package="org.example.maskacrud.repository"/>
     <jpa:repositories base-package="org.example.maskacrud.repository"/>
