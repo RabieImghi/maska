@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
-       xsi:schemaLocation="
-           http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans.xsd
-           http://www.springframework.org/schema/context
-           http://www.springframework.org/schema/context/spring-context.xsd
-           http://www.springframework.org/schema/tx
-           http://www.springframework.org/schema/tx/spring-tx.xsd
-           http://www.springframework.org/schema/data/jpa
-           http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/data/jpa
+       http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+    <context:component-scan base-package="org.example"/>
+
+    <jpa:repositories base-package="org.example.repository"/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
@@ -23,48 +26,27 @@
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="packagesToScan" value="org.example.maskacrud.entity"/>
+        <property name="packagesToScan" value="org.example.entity"/>
         <property name="jpaVendorAdapter">
-            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="showSql" value="true"/>
+                <property name="generateDdl" value="true"/>
+                <property name="database" value="POSTGRESQL"/>
+            </bean>
         </property>
         <property name="jpaProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
             </props>
         </property>
     </bean>
-
-
-    <bean id="memberSingleton" class="org.example.maskacrud.entity.Member" scope="singleton">
-        <constructor-arg value="M001"/>
-        <constructor-arg value="John"/>
-        <constructor-arg value="Doe"/>
-        <constructor-arg value="ID123456"/>
-        <constructor-arg value="Moroccan"/>
-        <constructor-arg value="#{T(java.time.LocalDate).now()}"/>
-        <constructor-arg value="#{T(java.time.LocalDate).now().plusYears(1)}"/>
-    </bean>
-    <bean id="memberPrototype" class="org.example.maskacrud.entity.Member" scope="prototype">
-        <constructor-arg value="M002"/>
-        <constructor-arg value="Jane"/>
-        <constructor-arg value="Smith"/>
-        <constructor-arg value="ID654321"/>
-        <constructor-arg value="French"/>
-        <constructor-arg value="#{T(java.time.LocalDate).now()}"/>
-        <constructor-arg value="#{T(java.time.LocalDate).now().plusYears(2)}"/>
-    </bean>
-
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
-
-    <context:component-scan base-package="org.example.maskacrud.service"/>
-    <context:component-scan base-package="org.example.maskacrud.repository"/>
-    <jpa:repositories base-package="org.example.maskacrud.repository"/>
-
 </beans>
