@@ -1,11 +1,10 @@
 package org.example.repository;
 
-import org.example.entity.Membre;
+import org.example.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MembreRepository extends JpaRepository<Membre , Long> {
+public interface MemberRepository extends JpaRepository<Member, Long> {
 
-    Membre findByFirstname(String firstname);
 }

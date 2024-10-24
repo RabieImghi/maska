@@ -3,24 +3,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Membre List</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Member List</title>
 </head>
 <body>
 <div class="container mt-5">
-  <h2 class="mb-4">Membre List</h2>
+  <h2 class="mb-4">Member List</h2>
   <table class="table table-bordered">
     <thead class="thead-light">
     <tr>
       <th>ID</th>
-      <th>Numéro d'Adhésion</th>
+      <th>Number d'Adhésion</th>
       <th>Nom</th>
-      <th>Prénom</th>
-      <th>Pièce d'Identification</th>
-      <th>Nationalité</th>
-      <th>Date d'Adhésion</th>
-      <th>Date d'Expiration de Licence</th>
-      <th>Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -29,30 +22,10 @@
         <td>${membre.id}</td>
         <td>${membre.adhesionNumber}</td>
         <td>${membre.firstname}</td>
-        <td>${membre.lastname}</td>
-        <td>${membre.cin}</td>
-        <td>${membre.nationality}</td>
-        <td>${membre.adhessionDate}</td>
-        <td>${membre.expirationDateLicence}</td>
-        <td class="d-flex justify-content-center align-items-center w-100">
-          <a href="${pageContext.request.contextPath}/membres/edit/${membre.id}" class="btn btn-warning btn-sm me-5">Edit</a>
-          <form action="${pageContext.request.contextPath}/delete" method="post">
-            <input type="hidden" name="id" value="${membre.id}" />
-            <input type="submit" value="Delete" class="btn btn-danger btn-sm" />
-          </form>
-        </td>
       </tr>
     </c:forEach>
     </tbody>
   </table>
-
-  <h1>${mebre.cin}</h1>
-  <a href="${pageContext.request.contextPath}/save" class="btn btn-primary">Add Membre</a>
 </div>
-
-<!-- Include Bootstrap JS (Optional) -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
