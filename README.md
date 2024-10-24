@@ -18,6 +18,29 @@ such as creating, viewing, updating, and deleting users through a web interface.
 - [Installation and Setup](#installation-and-setup)
 
 ### Project Structure
+    Maska
+    ├── src
+    │   └── main
+    │       ├── java
+    │       │   └── org.example
+    │       │       ├── controller
+    │       │       │   └── MemberController
+    │       │       ├── entity
+    │       │       │   └── Member
+    │       │       ├── repository
+    │       │       │   └── MemberRepository
+    │       │       └── services
+    │       │           └── MemberService
+    │       └── resources
+    │           └── applicationContext.xml
+    └── webapp
+        └── WEB-INF
+            ├── views
+            │   └── listMemre.jsp
+            ├── dispatcher-servlet.xml
+            └── web.xml
+    └── pom.xml
+
 
 ### Dependency Injection (DI)  
     est une technique qui permet à un objet d'utiliser ou de recevoir d'autres objets externes appelés dépendances,
