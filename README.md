@@ -58,11 +58,17 @@ such as creating, viewing, updating, and deleting users through a web interface.
      séparer l'application en modules.
 
 ### ApplicationContext
+     est une interface dans le framework Spring qui gère l'instanciation, l'initialisation et la gestion des beans. Elle permet 
+     également la configuration des beans en utilisant des fichiers XML ou des annotations Java.
 
 ### Component Scanning and Stereotype Annotations
+     est une fonctionnalité dans Spring qui permet de détecter automatiquement les classes annotées et de les enregistrer dans 
+     le conteneur, facilitant ainsi l'utilisation et l'instanciation des beans.
 
 ### Spring Data JPA
+    est une extension de Spring Data qui permet de simplifier l'accès à la base de données relationnelle en utilisant JPA.
 
 ### Spring MVC
+    est un framework en Java qui permet de développer des applications web en utilisant l'architecture MVC.
 
 ### Installation and Setup
